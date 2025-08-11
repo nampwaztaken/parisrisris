@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>locked site</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    padding-top: 56px; /* header height */
+    line-height: 1.6;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 1000;
+  }
+
+  /* Logo container */
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    user-select: none;
+  }
+
+  /* Title */
+  header h1 {
+    color: #f05454;
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.5rem;
+    user-select: none;
+  }
+
+  /* Tabs container aligned right */
+  .tabs {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .tab {
+    padding: 14px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #ccc;
+    border-bottom: 3px solid transparent;
+    transition: background 0.3s, color 0.3s, border-bottom 0.3s;
+    user-select: none;
+  }
+
+  .tab:hover {
+    background-color: #383838;
+  }
+
+  .tab.active {
+    color: #ff3b3b;
+    font-weight: 600;
+    background-color: #1f1f1f;
+    border-bottom: 3px solid #ff3b3b;
+  }
+
+  /* Tab content area */
+  main {
+    max-width: 900px;
+    margin: 1rem auto;
+    padding: 0 1rem 2rem 1rem;
+  }
+
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  h2 {
+    color: #f05454;
+    margin-top: 0;
+  }
+
+  code {
+    background-color: #333;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #00d1b2;
+  }
+
+  a {
+    color: #00afff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  .note {
+    color: #ffc107;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" aria-label="Logo">
+    <img src="https://ik.imagekit.io/dt3xs8pb5/216775957-removebg-preview.png?updatedAt=1754900598887" alt="Logo" width="32" height="32" />
+  </div>
+  <h1>Sh1ttyOOBE</h1>
+  <nav class="tabs" role="tablist" aria-label="Main Tabs">
+    <div class="tab active" data-tab="tab1" role="tab" tabindex="0" aria-selected="true" aria-controls="tab1">Unenrollment</div>
+    <div class="tab" data-tab="tab2" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab2">Post-Unenrollment</div>
+    <div class="tab" data-tab="tab3" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab3">Credits</div>
+  </nav>
+</header>
+
+<main>
+  <section id="tab1" class="tab-content active" role="tabpanel" tabindex="0">
+    <h2>Chromebook Unenrollment Method</h2>
+    <ol>
+      <li>Remember to backup your data!</li>
+      <li>Press <code>ESC</code> + <code>REFRESH</code> + <code>POWER</code></li>
+      <li>After you see the recovery screen, press <code>CTRL</code> + <code>D</code> then <code>ENTER</code> / <code>SPACE</code></li>
+      <li>On the "Welcome to your Chromebook" screen, wait until you see the quick set up with Android button 
+        <span class="note">(DO NOT PRESS GET STARTED IF IT DOESN'T SHOW IMMEDIATELY)</span>
+      </li>
+      <li>Hit <code>CTRL</code> + <code>ALT</code> + <code>SHIFT</code> + <code>R</code> and click "cancel"</li>
+      <li>Click "Enter your Google account email and password" — it should prompt to connect to a network</li>
+      <li>Open quick settings from the bottom right and connect to a network and sign in to your PERSONAL Google Account</li>
+    </ol>
+  </section>
+
+  <section id="tab2" class="tab-content" role="tabpanel" tabindex="0" hidden>
+    <h2>Post-Unenrollment</h2>
+    <p>After signing in, you can sign out and return to the welcome screen. Proceed through OOBE by clicking "Get Started" and "Next." You’ll be given three options to sign in. Use the same email. When it hangs on the "Please wait" screen, simply restart or press <code>Alt</code> + <code>VolUp</code> + <code>X</code>. You’ll be taken to the lockscreen.</p>
+    <p>From there, you’re done. You can sign out or reboot.</p>
+    <span class="note">(NOTE: DO NOT POWERWASH!)</span>
+  </section>
+
+  <section id="tab3" class="tab-content" role="tabpanel" tabindex="0" hidden>
+    <h2>Credits</h2>
+    <p>Credits to the following:</p>
+    <ul>
+      <li>The Crosbreakers</li>
+      <li>Moonsploits</li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const tabs = document.querySelectorAll(".tab");
+  const tabPanels = document.querySelectorAll(".tab-content");
+
+  function showSelfDestructMessage() {
+    // Clear all content
+    document.body.innerHTML = '';
+
+    // Create full screen message div
+    const message = document.createElement('div');
+    message.textContent = '⚠️ This site has self-destructed and is no longer accessible.';
+    message.style.position = 'fixed';
+    message.style.top = '0';
+    message.style.left = '0';
+    message.style.width = '100vw';
+    message.style.height = '100vh';
+    message.style.backgroundColor = '#1a1a1a';
+    message.style.color = '#ff3b3b';
+    message.style.display = 'flex';
+    message.style.justifyContent = 'center';
+    message.style.alignItems = 'center';
+    message.style.fontSize = '2rem';
+    message.style.fontFamily = 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
+    message.style.zIndex = '9999';
+
+    document.body.appendChild(message);
+  }
+
+  // Check if site has already self-destructed
+  if (localStorage.getItem('selfDestructed') === 'true') {
+    showSelfDestructMessage();
+  } else {
+    // Normal tab behavior
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+          t.tabIndex = -1;
+        });
+        tabPanels.forEach(panel => {
+          panel.classList.remove("active");
+          panel.hidden = true;
+        });
+
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        tab.tabIndex = 0;
+
+        const target = document.getElementById(tab.dataset.tab);
+        target.classList.add("active");
+        target.hidden = false;
+        target.focus();
+      });
+    });
+
+    document.querySelector('.tabs').addEventListener('keydown', e => {
+      const current = document.activeElement;
+      if (!current.classList.contains('tab')) return;
+
+      let index = Array.from(tabs).indexOf(current);
+
+      if (e.key === 'ArrowRight') {
+        index = (index + 1) % tabs.length;
+        tabs[index].focus();
+      } else if (e.key === 'ArrowLeft') {
+        index = (index - 1 + tabs.length) % tabs.length;
+        tabs[index].focus();
+      }
+    });
+
+    // Start 25-minute timer
+    setTimeout(() => {
+      localStorage.setItem('selfDestructed', 'true');
+      showSelfDestructMessage();
+    }, 15 * 60 * 1000);
+  }
+</script>
+
+</body>
+</html>
