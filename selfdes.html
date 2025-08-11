@@ -12,6 +12,10 @@
     color: #e0e0e0;
     padding-top: 56px; /* header height */
     line-height: 1.6;
+    -webkit-user-select: none; /* Disable text selection */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   header {
@@ -28,7 +32,6 @@
     z-index: 1000;
   }
 
-  /* Logo container */
   .logo {
     display: flex;
     align-items: center;
@@ -36,7 +39,6 @@
     user-select: none;
   }
 
-  /* Title */
   header h1 {
     color: #f05454;
     font-weight: 700;
@@ -45,7 +47,6 @@
     user-select: none;
   }
 
-  /* Tabs container aligned right */
   .tabs {
     display: flex;
     margin-left: auto;
@@ -72,7 +73,6 @@
     border-bottom: 3px solid #ff3b3b;
   }
 
-  /* Tab content area */
   main {
     max-width: 900px;
     margin: 1rem auto;
@@ -180,34 +180,66 @@
   const tabPanels = document.querySelectorAll(".tab-content");
 
   function showSelfDestructMessage() {
-    // Clear all content
     document.body.innerHTML = '';
 
-    // Create full screen message div
     const message = document.createElement('div');
     message.textContent = '⚠️ This site has self-destructed and is no longer accessible.';
-    message.style.position = 'fixed';
-    message.style.top = '0';
-    message.style.left = '0';
-    message.style.width = '100vw';
-    message.style.height = '100vh';
-    message.style.backgroundColor = '#1a1a1a';
-    message.style.color = '#ff3b3b';
-    message.style.display = 'flex';
-    message.style.justifyContent = 'center';
-    message.style.alignItems = 'center';
-    message.style.fontSize = '2rem';
-    message.style.fontFamily = 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
-    message.style.zIndex = '9999';
+    Object.assign(message.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: '#1a1a1a',
+      color: '#ff3b3b',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: '2rem',
+      fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
+      zIndex: '9999',
+      userSelect: 'none',
+    });
 
     document.body.appendChild(message);
   }
 
-  // Check if site has already self-destructed
+  // Disable copy, cut, paste events globally
+  ['copy', 'cut', 'paste'].forEach(ev =>
+    document.addEventListener(ev, e => e.preventDefault())
+  );
+
+  // Disable common keyboard shortcuts for copy/paste/cut and context menu
+  document.addEventListener('keydown', e => {
+    // Ctrl/Cmd + C, X, V, A (copy, cut, paste, select all)
+    if ((e.ctrlKey || e.metaKey) &&
+      ['c', 'x', 'v', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+    // Disable right click context menu key (Shift+F10 or context menu key)
+    if (e.key === 'ContextMenu' || (e.shiftKey && e.key === 'F10')) {
+      e.preventDefault();
+    }
+  });
+
+  // Disable right-click context menu
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // PrintScreen key attempt to disrupt screenshot (briefly blank screen)
+  window.addEventListener('keyup', e => {
+    if (e.key === 'PrintScreen') {
+      const original = document.body.innerHTML;
+      document.body.innerHTML = '';
+      setTimeout(() => {
+        document.body.innerHTML = original;
+      }, 2000);
+    }
+  });
+
   if (localStorage.getItem('selfDestructed') === 'true') {
     showSelfDestructMessage();
   } else {
-    // Normal tab behavior
+    // Tabs functionality
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
         tabs.forEach(t => {
@@ -246,11 +278,11 @@
       }
     });
 
-    // Start 25-minute timer
+    // Start 15-minute timer to self-destruct
     setTimeout(() => {
       localStorage.setItem('selfDestructed', 'true');
       showSelfDestructMessage();
-    }, 15 * 60 * 1000);
+    }, 15 * 60 * 1000); // 15 minutes in ms
   }
 </script>
 
